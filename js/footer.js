@@ -47,7 +47,7 @@
         const x = clamp(e.gamma / 45) * maxTiltGyro - 30;
         const y = clamp(e.beta / 45) * maxTiltGyro + 2;
         wrapper.style.transform = `rotateX(${-y}deg) rotateY(${x}deg)`;
-        monitor.innerHTML = `y: ${e.beta}deg, x:${e.gamma}deg`;
+        monitor.innerHTML = `y: ${e.beta}deg, x:${e.gamma}deg <br>cx: ${clamp(e.gamma / 45)}, cy: ${clamp(e.beta / 45)} <br>tx: ${x}, ty: ${y}`;
     }
 
     const footerObserver = new IntersectionObserver(entries => {

@@ -44,10 +44,10 @@
     }
 
     function handleGyro(e) {
-        const x = clamp(e.gamma / 45) * maxTiltGyro;
-        const y = clamp(e.beta / 45) * maxTiltGyro;
+        const x = clamp(e.gamma / 45) * maxTiltGyro - 30;
+        const y = clamp(e.beta / 45) * maxTiltGyro + 2;
         wrapper.style.transform = `rotateX(${-y}deg) rotateY(${x}deg)`;
-        monitor.innerHTML = `y: ${y}deg, x:${x}deg`;
+        monitor.innerHTML = `y: ${e.beta}deg, x:${e.gamma}deg`;
     }
 
     const footerObserver = new IntersectionObserver(entries => {

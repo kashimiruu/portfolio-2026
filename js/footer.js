@@ -25,6 +25,12 @@
     const maxTiltMouse = 45;
     const maxTiltGyro = 30;
 
+    const monitor = document.createElement('div');
+    monitor.style.position = "fixed";
+    monitor.style.top = 0;
+    monitor.style.right = 0;
+    document.body.appendChild(monitor);
+
     function clamp(num) {
         return Math.max(-1, Math.min(1, num));
     }
@@ -38,9 +44,10 @@
     }
 
     function handleGyro(e) {
-        const x = (e.gamma / 45) * maxTiltGyro;
-        const y = (e.beta / 45) * maxTiltGyro;
+        const x = clamp(e.gamma / 45) * maxTiltGyro;
+        const y = clamp(e.beta / 45) * maxTiltGyro;
         wrapper.style.transform = `rotateX(${-y}deg) rotateY(${x}deg)`;
+        monitor.innerHTML = `y: ${y}deg, x:${x}deg`;
     }
 
     const footerObserver = new IntersectionObserver(entries => {

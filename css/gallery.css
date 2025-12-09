@@ -1,0 +1,178 @@
+#gallery .content {
+    /* background: rgba(255,255,255,0.1); */
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    /* overflow: hidden; */
+
+    /* padding-top: 50px; */
+}
+
+#gallery .row {
+    width: 100vw;
+    height: fit-content;
+    margin-bottom: 50px;
+}
+
+@media (orientation: landscape) {
+    #gallery .row {
+        min-height: 100vh;    
+    }
+}
+
+#gallery .item {
+    /* background: rgba(255,255,255,0.2); */
+    text-wrap: wrap;
+}
+
+#gallery .article {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3vmin;
+    line-height: 1.5;
+}
+
+#gallery .article .header {
+    font-size: 4rem;
+    line-height: 1.1;
+}
+
+#gallery .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5vmin;
+}
+
+#gallery .shelf {
+    /* background: rebeccapurple; */
+    max-width: var(--max-width);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5vmin;
+    align-items: center;
+    padding: 5vmin;
+}
+
+#gallery .shelf > div {
+    width: 50%;
+    flex-basis: 350px;
+    flex-grow: 1;
+}
+
+#gallery .row img {
+    --width: 50%;
+    width: var(--width);
+    height: calc((var(--width)/1920)*1080);
+}
+
+#gallery .row .video-container {
+    position: relative;
+    --angle: 15deg;
+    --width: 100%;
+    --height: calc((var(--width)/1920)*1080);
+    --offset: calc(0.5 * var(--height));
+}
+
+#gallery .row video {
+    width: var(--width);
+    height: var(--height);
+    border-radius: 5px;
+}
+
+@media screen and (min-width: 824px) {
+    #gallery .shelf:has(.web-article) {
+        flex-direction: row-reverse;
+    }
+}
+
+#gallery video.back {
+    --width: 80%;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform-origin: center right;
+    height: inherit;
+    z-index: -100;
+}
+
+#gallery video.back:hover {
+    z-index: 3000;
+}
+
+#gallery video.back-1 {
+    transform: rotate(var(--angle)) translateY(calc(0px - var(--offset) - 50%)) translateX(-25%);
+}
+
+#gallery video.back-2 {
+    transform: rotate(calc(360deg - var(--angle))) translateY(calc(var(--offset) - 50%)) translateX(-8%);
+}
+
+#gallery .shelf:has(.web-article) video:not(.back) {
+    --distance: 40%;
+    margin-top: var(--distance);
+    margin-bottom: var(--distance);
+}
+
+#gallery .video-container:has(.case) {
+    display: flex;
+    flex-direction: column;
+    row-gap: 13px;
+}
+
+#gallery .video-container .case {
+    display: flex;
+    column-gap: 2.15%;
+    height: 100%;
+    position: relative;
+}
+
+#gallery .video-container:has(.case) .frame {
+    --length: 25.77%;
+    width: var(--length);
+    border-radius: 0;
+}
+
+#gallery .video-container:has(.case) .large {
+    --length: 44.17%;
+}
+
+#gallery .video-container:has(.case) .disk {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 100%;
+}
+
+#gallery .video-container:has(.case) .disk .frame {
+    width: 100%;
+}
+
+#gallery .video-container:has(.case) .disk .small {
+    width: 60.71%;
+}
+
+#gallery .case:has(#welcome) {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 17.64%;
+}
+
+#gallery #welcome {
+    width: 42.3%;
+    height: auto;
+}
+
+#gallery #miting {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: var(--length);
+    height: auto;
+}
+
+#gallery #ticap {
+    width: 27.61%;
+    height: auto;
+    align-self: flex-start;
+}

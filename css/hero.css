@@ -1,0 +1,83 @@
+#hero .background {
+    width: 100vw;
+    height: 100vh;
+}
+
+#hero .workspace {
+    width: 100vw;
+    height: 100vh;
+    padding: 5vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background-image: url('../img/main.gif');
+    background-size: cover;
+    background-position: center center; */
+    background: rgba(255, 255, 255, 0.05);
+}
+
+#hero .arcade-font {
+    font-family: "Press Start 2P", sans-serif;
+    text-shadow: -1px 0px 0px red, 1px 0px 0px cyan; 
+    font-size: 18px;
+}
+
+#hero .bi {
+    font-size: 28px;
+    animation-name: blink;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    51% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+#hero .header {
+    align-self: center;
+    width: 90vmin;
+    max-width: 1200px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#hero svg path {
+    fill: var(--white);
+}
+
+#hero svg {
+    filter: drop-shadow(0 0 0 5px var(--black)); 
+}
+
+#hero .p {
+    position: absolute;
+    bottom: 18vh;
+    right: 5vmin;
+    width: 90%;
+    /* opacity: 0; */
+    display: none;
+}
+
+@media screen and (min-width: 420px) {
+    #hero .p {
+        position: absolute;
+        bottom: 25vh;
+        right: calc(calc(100vw - 1200px)/2);
+        transform: translate(-0%, 90%);
+        width: 325.38px;
+    }
+}

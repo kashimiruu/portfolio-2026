@@ -31,6 +31,8 @@
     monitor.style.right = 0;
     document.body.appendChild(monitor);
 
+    let startingGyro = {};
+
     function clamp(num) {
         return Math.max(-1, Math.min(1, num));
     }
@@ -53,14 +55,14 @@
     const footerObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                footer.addEventListener('mousemove', handleMouseMove);
-                window.addEventListener('deviceorientation', handleGyro);
                 window.addEventListener('deviceorientation', (e) => {
                     startingGyro = {
                         g: e.gamma, 
                         b: e.beta
                     };
                 }, {once: true});
+                footer.addEventListener('mousemove', handleMouseMove);
+                window.addEventListener('deviceorientation', handleGyro);
             } else {
                 footer.removeEventListener('mousemove', handleMouseMove);
                 window.removeEventListener('deviceorientation', handleGyro);

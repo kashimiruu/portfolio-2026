@@ -1,4 +1,4 @@
-import Assets from "./class/assets.js";
+import Assets from "./class/Assets.js";
 
 (async () => {
     window.assets = new Assets();

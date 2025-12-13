@@ -1,3 +1,5 @@
+import Horse from "./class/Horse.js";
+
 ( async () => {
     const hero = document.body.querySelector('#hero');
     const wrapper = hero.querySelector('.wrapper');
@@ -43,30 +45,11 @@
     background.src = assets.get[background.dataset.badge];
 
     // fills the carousel
-    function addHorse(xCoordinate) {
-        const assets = Object.keys(window.assets.list).filter(key => key !== "ocean_eyes");
-        const assetName = assets[Math.floor(Math.random() * assets.length)];
-        console.log(assetName);
-        const asset = (window.assets.type[assetName].includes('image')) ? document.createElement("img") : document.createElement("video");
-        Object.assign(asset.style, {
-            height: "100%",
-            width: "auto",
-            position: "absolute",
-            top: 0,
-            left: xCoordinate + "px",
-            opacity: "30%",
-        });
-        asset.src = window.assets.get[assetName];
-        if (asset instanceof HTMLVideoElement) {
-            asset.autoplay = true;
-            asset.loop = true;
-            asset.muted = true;
-            asset.play();
-        }
-        carousel.append(asset);
-    }
-    for (let i = 20, max = 20, width = window.innerWidth; i > 0; i-- ) addHorse((i/(max+1.0))*width);
-
+    for (let i = 20, max = 20, width = window.innerWidth; i > 0; i-- ){
+	const horse = new Horse((i/(max+1.0))*width);
+	horse.appendTo(carousel);
+        horse.play();
+    };
     
     const timeline = gsap.timeline({
         scrollTrigger: {

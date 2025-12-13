@@ -1,0 +1,47 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    height: fit-content;
+    z-index: 2002;
+    padding: 0 3vmin;
+    margin-top: 30px;
+    overflow: hidden;
+}
+
+nav * {
+    font-size: 18px;
+}
+
+nav *:has(> svg) {
+    /* background: red; */
+    width: 140px;
+}
+
+nav .menu-container {
+    display: flex;
+    align-items: center;
+    column-gap: 6vmin;
+    margin-bottom: 0px;
+}
+
+nav .menu-items {
+    display: flex;
+    column-gap: inherit;
+}
+
+nav .menu-icon {
+    margin-top: 0px;
+}
+
+nav .bi {
+    font-size: 28px;
+}
+
+@media screen and (max-width: 576px) {
+    nav .menu-items {
+        display: none;
+    }
+}

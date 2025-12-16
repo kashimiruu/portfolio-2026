@@ -2,9 +2,9 @@ export default class Horse {
     constructor(xCoordinate) {
         this.x = xCoordinate;
         this.duration = 15;
-        const list = Object.keys(window.assets.list).filter(key => key !== "ocean_eyes");
+        const list = Object.keys(window.assets.list);
         const assetName = list[Math.floor(Math.random() * list.length)];    
-        this.asset = (window.assets.type[assetName].includes('image')) ? document.createElement("img") : document.createElement("video");
+        this.asset = (window.assets.isImg(assetName)) ? document.createElement("img") : document.createElement("video");
         Object.assign(this.asset.style, {
             height: "300px",
             width: "auto",

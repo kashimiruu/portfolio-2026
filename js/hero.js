@@ -46,15 +46,12 @@ import Horse from "./class/Horse.js";
         timer.innerHTML = `${pad(hour)}:${pad(minute)}:${pad(second)}`;
         time = now + second;
     }, 1000);
-    
-    // adds video
-    const background = hero.querySelector('video');
-    background.playbackRate = 0.3;
-    background.src = assets.get[background.dataset.badge];
 
     // fills the carousel
     const COUNTS = Math.floor(window.innerWidth/80);
+    let discarded = [];
     for (let i = COUNTS, width = window.innerWidth; i > 0; i-- ){
+        
 	const horse = new Horse((i/(COUNTS))*width);
 	horse.appendTo(carousel);
         horse.play();
@@ -69,12 +66,6 @@ import Horse from "./class/Horse.js";
             pin: true,
         }
     })
-
-    timeline.fromTo(background, {
-        opacity: 0,
-    }, {
-        opacity: 0,
-    });
     Array.from(carousel.children).forEach((horse) => {
         timeline.fromTo(horse, {
             y: 0,

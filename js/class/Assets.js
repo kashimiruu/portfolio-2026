@@ -10,7 +10,11 @@ export default class Assets {
         if (!res.ok) throw new Error("Failed to fetch" + res.status);
         const blob = await res.blob();
         this.get[name] = URL.createObjectURL(blob);
-        this.type[name] = res.type;
         this.list = this.get;
+        this.type[name] = blob.type;
+    }
+    isImg(assetName) {
+        console
+        return this.type[assetName]?.includes("image/");
     }
 }

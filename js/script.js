@@ -1,11 +1,10 @@
-
-
 (async () => {
     await import("./gsap.js");
     await import("./assets.js");
     const imports = setInterval( async () => {
         if (window.gsap && window.gsapPlugins && window.assetsLoaded) {
             await import("./hero.js");
+            await import("./about.js");
             await import("./gallery.js");
             await import("./certs.js");
             await import("./footer.js");

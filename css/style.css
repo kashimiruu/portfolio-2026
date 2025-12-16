@@ -3,6 +3,7 @@
 
 @import url('./nav.css');
 @import url('./hero.css');
+@import url('./about.css');
 @import url('./gallery.css');
 @import url('./footer.css');
 @import url('./certs.css');
@@ -17,6 +18,7 @@
 html {
     font-size: 14px;
     scroll-behavior: smooth;
+    overflow-y: scroll;
 }
 
 @media screen and (min-width: 900px) {

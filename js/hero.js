@@ -4,6 +4,7 @@ import Horse from "./class/Horse.js";
     const hero = document.body.querySelector('#hero');
     const wrapper = hero.querySelector('.wrapper');
     const carousel = hero.querySelector('.carousel');
+    const header = hero.querySelector('svg');
 
     // locks the height based on 100dvh with searchbar (for mobile)
     let currentWidth = 0, elHeight = 0;
@@ -13,9 +14,16 @@ import Horse from "./class/Horse.js";
                 minHeight: "100svh",
                 height: "auto",
             });
+            Object.assign(carousel.style, {
+                minHeight: "100svh",
+                height: "auto",
+            });
             elHeight = wrapper.offsetHeight;
             currentWidth = window.innerWidth;
             Object.assign(wrapper.style, {
+                maxHeight: elHeight + "px",
+            });
+            Object.assign(carousel.style, {
                 maxHeight: elHeight + "px",
             });
         }
@@ -45,8 +53,9 @@ import Horse from "./class/Horse.js";
     background.src = assets.get[background.dataset.badge];
 
     // fills the carousel
-    for (let i = 20, max = 20, width = window.innerWidth; i > 0; i-- ){
-	const horse = new Horse((i/(max+1.0))*width);
+    const COUNTS = Math.floor(window.innerWidth/80);
+    for (let i = COUNTS, width = window.innerWidth; i > 0; i-- ){
+	const horse = new Horse((i/(COUNTS))*width);
 	horse.appendTo(carousel);
         horse.play();
     };
@@ -55,30 +64,23 @@ import Horse from "./class/Horse.js";
         scrollTrigger: {
             trigger: hero,
             start: "top top",
-            end: "+=200vh",
+            end: "+=400vh",
             scrub: true,
             pin: true,
         }
     })
 
-    timeline.fromTo(wrapper, {
-        // scale: 1,
-        opacity: 1,
-        position: "absolute",
-        minHeight: elHeight + "px",
-        width: window.innerWidth + "px",
-        transform: "translate(0,0)",
-        borderRadius: 0,
-    }, {
-        // scale: 0.4,
+    timeline.fromTo(background, {
         opacity: 0,
-        position: "absolute",
-        width: 0.4*window.innerWidth,
-        minHeight: 0.4*window.innerWidth*1080/1920 + "px",
-        bottom: window.innerHeight/2,
-        left: window.innerWidth/2,
-        transform: "translate(-50%, -50%)",
-        borderRadius: "15px",
-        ease: "ease-in",
-    })
+    }, {
+        opacity: 0,
+    });
+    Array.from(carousel.children).forEach((horse) => {
+        timeline.fromTo(horse, {
+            y: 0,
+        }, {
+            y: `${80*Math.random()-50}vh`,
+            ease: "ease-out",
+        }, "<");
+    });    
 })();

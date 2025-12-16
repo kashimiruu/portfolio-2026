@@ -1,5 +1,4 @@
-(async() => {
-    window.importJS = (src) => {
+(async() => {    window.importJS = (src) => {
         return new Promise((resolve, reject) => {
             const js = document.createElement('script');
             document.head.appendChild(js);

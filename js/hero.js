@@ -48,11 +48,13 @@ import Horse from "./class/Horse.js";
     }, 1000);
 
     // fills the carousel
+    let assetsCopy = [];
     const COUNTS = Math.floor(window.innerWidth/80);
-    let discarded = [];
     for (let i = COUNTS, width = window.innerWidth; i > 0; i-- ){
-        
-	const horse = new Horse((i/(COUNTS))*width);
+        if (assetsCopy.length == 0) assetsCopy = Object.keys(window.assets.list).filter(key => key !== "ocean_eyes");
+        const assetName = assetsCopy[Math.floor(Math.random() * assetsCopy.length)];
+        assetsCopy.splice(assetsCopy.indexOf(assetName), 1);
+	const horse = new Horse(assetName, (i/(COUNTS))*width);
 	horse.appendTo(carousel);
         horse.play();
     };

@@ -9,22 +9,27 @@
             await import("./certs.js");
             await import("./footer.js");
             clearInterval(imports);
+            main();
         }
     }, 1023);
     
-    // play and pause the videos when in-view and out-view
-    const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(async (entry) => {
-            entry.target.muted = true;
-            entry.target.autoplay = true;
-            entry.target.playsInline = true;
-            entry.target.loop = true;
-            if (entry.isIntersecting) {
-                entry.target.play()?.catch(() => {}); // catch() is to ignore errors when autoplay is blocked
-            } else {
-                entry.target.pause();
-            }
+    async function main() {
+        // play and pause the videos when in-view and out-view
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(async (entry) => {
+                entry.target.src = window.assets.get[entry.target.dataset.badge];
+                entry.target.muted = true;
+                entry.target.autoplay = true;
+                entry.target.playsInline = true;
+                entry.target.loop = true;
+                if (entry.isIntersecting) {
+                    entry.target.play()?.catch(() => {}); // catch() is to ignore errors when autoplay is blocked
+                } else {
+                    entry.target.pause();
+                }
+            });
         });
-    });
-    document.querySelectorAll('video').forEach(video => { videoObserver.observe(video)});
+        document.querySelectorAll('video').forEach(video => { videoObserver.observe(video)});
+    }
+        
 })();

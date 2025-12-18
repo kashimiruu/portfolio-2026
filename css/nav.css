@@ -30,6 +30,7 @@ nav .menu-container {
 nav .menu-items {
     display: flex;
     column-gap: inherit;
+    cursor: pointer;
 }
 
 nav .menu-icon {
@@ -42,6 +43,11 @@ nav .bi {
 
 @media screen and (max-width: 576px) {
     nav .menu-items {
+        display: none;
+    }
+}
+@media screen and (min-width: 577px) {
+    nav .menu-icon {
         display: none;
     }
 }

@@ -15,6 +15,10 @@
     --max-width: 1400px;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 html {
     font-size: 14px;
     scroll-behavior: smooth;

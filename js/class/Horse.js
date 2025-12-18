@@ -1,9 +1,7 @@
 export default class Horse {
-    constructor(xCoordinate) {
+    constructor(assetName, xCoordinate) {
         this.x = xCoordinate;
         this.duration = 15;
-        const list = Object.keys(window.assets.list);
-        const assetName = list[Math.floor(Math.random() * list.length)];    
         this.asset = (window.assets.isImg(assetName)) ? document.createElement("img") : document.createElement("video");
         Object.assign(this.asset.style, {
             height: "300px",
@@ -13,12 +11,15 @@ export default class Horse {
             left: this.x + "px",
             opacity: "100%",
         });
-        this.asset.src = window.assets.get[assetName];
+        
         if (this.asset instanceof HTMLVideoElement) {
+            this.asset.dataset.badge = assetName;
             this.asset.autoplay = true;
             this.asset.loop = true;
             this.asset.muted = true;
             this.asset.play();
+        } else {
+            this.asset.src = window.assets.list[assetName];
         }
 
        //gsap animation
